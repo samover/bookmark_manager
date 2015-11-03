@@ -60,6 +60,7 @@ RSpec.configure do |config|
 
 #Setup for Database rollback between test example instances
   config.around(:each) do |example|
+    DatabaseCleaner.clean_with :truncation
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.start
     example.run
