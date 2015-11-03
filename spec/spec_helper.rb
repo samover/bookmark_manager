@@ -9,7 +9,7 @@ require 'capybara/rspec'
 require 'rspec'
 require 'data_mapper'
 require 'dm-postgres-adapter'
-# require 'web_helper'
+require 'web_helper'
 require './app/models/link'
 
 Capybara.app = BookmarkManager
