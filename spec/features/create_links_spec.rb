@@ -1,4 +1,5 @@
 feature "create links" do
+
   scenario "it adds a link, title and url to Bookmark Manager" do
     visit('/')
     click_button('Add bookmark')
@@ -8,4 +9,5 @@ feature "create links" do
     click_button('View links')
     expect(page).to have_content('Makers Academy')
   end
+
 end
