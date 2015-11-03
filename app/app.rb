@@ -11,11 +11,12 @@ class BookmarkManager < Sinatra::Base
     erb :links
   end
 
-  get '/create_link' do
-    erb :create_link
+  get '/links/new' do
+    erb :'links/new'
   end
 
-  post '/add_bookmark' do
+  post '/links/add' do
+    Link.create(title: params[:title], url: params[:url])
     redirect('/')
   end
 
