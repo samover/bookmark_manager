@@ -10,6 +10,7 @@
     <li>
     <%= link.title %>
     <%= link.url %>
+    <%= link.tags.map{ |tag| tag.name }.join(', ') %>
     </li>
   <% end %>
   </ul>
