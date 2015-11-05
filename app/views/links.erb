@@ -1,6 +1,11 @@
 <div style="text-align: center">
   <h1>Your bookmarks</h1>
-  <ul>
+  <form action='/links/new' method='get'>
+    <input type='submit' value='Add bookmark'>
+  </form>
+
+  <ul id='links'>
+
   <% @link.each do |link| %>
     <li>
     <%= link.title %>
