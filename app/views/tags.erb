@@ -1,0 +1,14 @@
+<div style="text-align: center">
+  <h1>Tag search result</h1>
+
+  <ul id='links'>
+
+  <% @link.each do |link| %>
+    <li>
+    <%= link.title %>
+    <%= link.url %>
+    <%= link.tags.map{ |tag| tag.name }.join(', ') %>
+    </li>
+  <% end %>
+  </ul>
+</div>
