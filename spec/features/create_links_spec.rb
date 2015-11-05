@@ -5,7 +5,7 @@ feature "create links" do
     click_button('Add bookmark')
     fill_in('title', with: 'Makers Academy')
     fill_in('url', with: 'www.makersacademy.com')
-    click_button('Add bookmark')
+    click_button('Submit')
     expect(page).to have_content('Makers Academy')
   end
 
