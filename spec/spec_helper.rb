@@ -11,6 +11,7 @@ require 'data_mapper'
 # require 'dm-postgres-adapter'
 require 'web_helper'
 require './app/models/link'
+require './app/models/tag'
 require 'database_cleaner'
 
 
