@@ -2,29 +2,33 @@ ENV['RACK_ENV'] ||= 'development'
 
 require 'sinatra/base'
 require './app/data_mapper_setup'
-
+require 'sinatra/flash'
 
 class BookmarkManager < Sinatra::Base
   enable :sessions
+  register Sinatra::Flash
 
   get '/' do
     erb :index
   end
 
   get '/signup' do
-    @login_attempt = session[:login_attempt] || false
     erb :signup
   end
 
   post '/signup/new' do
-    session[:login_attempt] = true
-    user = User.create(username: params[:username],
+    @user = User.new(username: params[:username],
                     email: params[:email],
                     password: params[:password],
                     password_confirmation: params[:password_confirmation] )
-
-    session[:user_id] = user.id
-    user.valid? ? (redirect '/links') : (redirect '/signup')
+    
+    if @user.save
+      session[:user_id] = @user.id
+      redirect '/links'
+    else
+      flash.now[:error] = 'Passwords don\'t match: please reenter your password'
+      erb :signup
+    end
   end
 
   get '/links' do
