@@ -18,15 +18,19 @@ class BookmarkManager < Sinatra::Base
   post '/signup/new' do
     user = User.create(username: params[:username],
                     email: params[:email],
-                    password: params[:password] )
+                    password: params[:password],
+                    password_confirmation: params[:password_confirmation] )
 
     session[:user_id] = user.id
-    redirect '/links'
+    user.valid? ? (redirect '/links') : (redirect '/error')
   end
 
   get '/links' do
     @link = Link.all
     erb :links
+  end
+  get '/error' do
+    erb :error
   end
 
   get '/links/new' do
