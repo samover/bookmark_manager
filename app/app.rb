@@ -12,23 +12,26 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/signup' do
+    @login_attempt = session[:login_attempt] || false
     erb :signup
   end
 
   post '/signup/new' do
+    session[:login_attempt] = true
     user = User.create(username: params[:username],
                     email: params[:email],
                     password: params[:password],
                     password_confirmation: params[:password_confirmation] )
 
     session[:user_id] = user.id
-    user.valid? ? (redirect '/links') : (redirect '/error')
+    user.valid? ? (redirect '/links') : (redirect '/signup')
   end
 
   get '/links' do
     @link = Link.all
     erb :links
   end
+
   get '/error' do
     erb :error
   end
