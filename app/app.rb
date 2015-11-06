@@ -20,13 +20,8 @@ class BookmarkManager < Sinatra::Base
                     email: params[:email],
                     password: params[:password] )
 
-    session[:user] = user.id
-    redirect '/welcome'
-  end
-
-  get '/welcome' do
-    @user = User.first(id: session[:user])
-    erb :welcome
+    session[:user_id] = user.id
+    redirect '/links'
   end
 
   get '/links' do
@@ -56,7 +51,11 @@ class BookmarkManager < Sinatra::Base
     erb :tags
   end
 
-
+  helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+  end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
