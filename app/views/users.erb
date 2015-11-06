@@ -1,10 +1,6 @@
 <h1>Please Signup</h1>
 
-<% if @login_attempt%>
-    <h3>Passwords don't match: please reenter your password</h3>
-<% end %>
-
-<form action='/signup/new' method='post'>
+<form action='/users/new' method='post'>
   <p>
     <label for'username'>Username
       <abbr title='This field is mandatory'>*</abbr>
