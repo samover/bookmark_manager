@@ -1,15 +1,35 @@
+<h1>Please Signup</h1>
+
 <% if @login_attempt%>
     <h3>Passwords don't match: please reenter your password</h3>
 <% end %>
 
 <form action='/signup/new' method='post'>
-  <label for'username'>Username</label>
-  <input type='text' name='username' value='<%= @user.username %>'><br>
-  <label for'email'>Email</label>
-  <input type='text' name='email' value='<%= @user.email %>' ><br>
-  <label for 'password'>Password</label>
-  <input type='password' name='password'><br>
-  <label for 'password_confirmation'>Confirm password</label>
-  <input type='password' name='password_confirmation'><br>
-  <input type='submit' value='Sign Up'>
+  <p>
+    <label for'username'>Username
+      <abbr title='This field is mandatory'>*</abbr>
+    </label>
+    <input type='text' name='username' value='<%= @user.username %>'
+           required >
+  </p>
+  <p>
+    <label for'email'>Email
+      <abbr title='This field is mandatory'>*</abbr>
+    </label>
+    <input type='email' name='email' value='<%= @user.email %>' required
+    placeholder="Enter a valid email addres">
+  </p>
+  <p>
+    <label for 'password'>Password
+      <abbr title='This field is mandatory'>*</abbr>
+    </label>
+    <input type='password' name='password'>
+  </p>
+  <p>
+    <label for 'password_confirmation'>Confirm password
+      <abbr title='This field is mandatory'>*</abbr>
+    </label>
+    <input type='password' name='password_confirmation'>
+  </p>
+    <input type='submit' value='Sign Up'>
 </form>

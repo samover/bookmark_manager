@@ -5,8 +5,12 @@ feature "add new user" do
     expect(User.first.email).to eq 'me@me.com'
   end
 
-  scenario "validating password confirmation" do
+  scenario "it shows an error message when passwords don\'t match" do
     expect { sign_up(password_confirmation: 'abc123') }.not_to change {User.count}
     expect(page).to have_content('Passwords don\'t match: please reenter your password')
+  end
+
+  scenario "user cannot sign up without an email address" do
+    expect { sign_up(email: '') }.not_to change{User.count}
   end
 end
