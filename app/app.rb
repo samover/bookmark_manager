@@ -13,6 +13,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/signup' do
+    @user = User.new
     erb :signup
   end
 
@@ -21,7 +22,7 @@ class BookmarkManager < Sinatra::Base
                     email: params[:email],
                     password: params[:password],
                     password_confirmation: params[:password_confirmation] )
-    
+
     if @user.save
       session[:user_id] = @user.id
       redirect '/links'
