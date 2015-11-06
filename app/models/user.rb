@@ -7,12 +7,14 @@ class User
 
   property :id, Serial
   property :username, String
-  property :email, String
+  property :email, String, required: true
   property :password_hash, Text
   attr_accessor :password_confirmation
   attr_reader :password
 
   validates_confirmation_of :password
+  validates_presence_of :email
+  validates_format_of :email, :as => :email_address
 
   def password=(new_password)
     @password = new_password

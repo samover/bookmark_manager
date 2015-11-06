@@ -13,4 +13,8 @@ feature "add new user" do
   scenario "user cannot sign up without an email address" do
     expect { sign_up(email: '') }.not_to change{User.count}
   end
+
+  scenario 'user cannot sign up with an invalid email address' do
+    expect { sign_up(email: 'bogus@email') }.not_to change{User.count}
+  end
 end
