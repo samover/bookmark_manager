@@ -12,15 +12,18 @@ feature "add new user" do
 
   scenario "user cannot sign up without an email address" do
     expect { sign_up(email: '') }.not_to change{User.count}
+    expect(current_path).to eq '/signup/new'
   end
 
   scenario 'user cannot sign up with an invalid email address' do
     expect { sign_up(email: 'bogus@email') }.not_to change{User.count}
+    expect(current_path).to eq '/signup/new'
   end
 
   scenario 'a user cannot sign up with an email that is already registered' do
     sign_up
     expect { sign_up }.not_to change{User.count}
+    expect(current_path).to eq '/signup/new'
     expect(page).to have_content('Email is already taken')
   end
 end
